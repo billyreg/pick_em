@@ -5,7 +5,8 @@ class PicksController < ApplicationController
 
   # GET /picks
   def index
-    @picks = current_user.picks.page(params[:page]).per(10)
+    @q = current_user.picks.ransack(params[:q])
+    @picks = @q.result(:distinct => true).includes(:user, :game).page(params[:page]).per(10)
   end
 
   # GET /picks/1
