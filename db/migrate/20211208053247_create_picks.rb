@@ -3,7 +3,7 @@ class CreatePicks < ActiveRecord::Migration[6.0]
     create_table :picks do |t|
       t.integer :user_id
       t.integer :game_id
-      t.string :team
+      t.integer :team_id
       t.integer :weight
 
       t.timestamps

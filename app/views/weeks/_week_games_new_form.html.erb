@@ -1,0 +1,24 @@
+<%= form_with(model: @game, local: true) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :favorite_id %>
+
+    <%= f.collection_select :favorite_id, Team.all, :id, :to_s, {}, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :underdog_id %>
+
+    <%= f.collection_select :underdog_id, Team.all, :id, :to_s, {}, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+  <%= f.hidden_field :week_id, value: @week.id %>
+
+  <%= f.submit "Create game", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

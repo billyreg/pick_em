@@ -6,8 +6,8 @@ class PicksController < ApplicationController
 
   def index
     @q = current_user.picks.ransack(params[:q])
-    @picks = @q.result(distinct: true).includes(:user,
-                                                :game).page(params[:page]).per(10)
+    @picks = @q.result(distinct: true).includes(:user, :game,
+                                                :team).page(params[:page]).per(10)
   end
 
   def show; end
@@ -66,6 +66,6 @@ class PicksController < ApplicationController
   end
 
   def pick_params
-    params.require(:pick).permit(:user_id, :game_id, :team, :weight)
+    params.require(:pick).permit(:user_id, :game_id, :team_id, :weight)
   end
 end

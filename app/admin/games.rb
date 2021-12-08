@@ -1,5 +1,5 @@
 ActiveAdmin.register Game do
-  permit_params :favorite, :underdog, :description
+  permit_params :favorite_id, :underdog_id, :description, :week_id
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

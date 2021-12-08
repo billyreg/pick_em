@@ -20,7 +20,11 @@
       </dd>
 
       <dt>Team</dt>
-      <dd><%= pick.team %></dd>
+      <dd>
+        <% if @pick.team.present? %>
+          <%= link_to pick.team, pick.team %>
+        <% end %>
+      </dd>
 
       <dt>Weight</dt>
       <dd><%= pick.weight %></dd>
