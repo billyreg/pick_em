@@ -5,7 +5,7 @@ class PicksController < ApplicationController
 
   # GET /picks
   def index
-    @picks = Pick.all
+    @picks = current_user.picks.page(params[:page]).per(10)
   end
 
   # GET /picks/1
