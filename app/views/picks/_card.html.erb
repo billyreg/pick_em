@@ -6,32 +6,24 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @pick.user.present? %>
           <%= link_to pick.user, pick.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
       <dt>Game</dt>
-      <!-- Display game_id start -->
       <dd>
         <% if @pick.game.present? %>
           <%= link_to pick.game, pick.game %>
         <% end %>
       </dd>
-      <!-- Display game_id end -->
 
       <dt>Team</dt>
-      <!-- Display team start -->
       <dd><%= pick.team %></dd>
-      <!-- Display team end -->
 
       <dt>Weight</dt>
-      <!-- Display weight start -->
       <dd><%= pick.weight %></dd>
-      <!-- Display weight end -->
 
     </dl>
 
@@ -40,7 +32,6 @@
         <%= link_to_show_or_back pick, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link pick start -->
       <div class="col">
         <% if current_user == @pick.user %>
           <%= link_to edit_pick_url(pick), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -48,9 +39,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link pick end -->
 
-      <!-- Delete link pick start -->
       <div class="col">
         <% if current_user == @pick.user %>
           <%= link_to pick, method: :delete, data: { confirm: "Do you really want to delete this pick?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -58,7 +47,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link pick end -->
     </div>
   </div>
 

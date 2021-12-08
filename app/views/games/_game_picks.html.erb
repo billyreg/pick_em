@@ -10,26 +10,20 @@
   <ul class="list-group list-group-flush">
     <% @game.picks.each do |pick| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <!-- Show link start -->
         <%= link_to pick, pick %>
-        <!-- Show link end -->
 
-        <!-- Delete link start -->
         <% if current_user == pick.user %>
           <%= link_to pick, method: :delete do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>
         <% end %>
-        <!-- Delete link end -->
 
       </li>
     <% end %>
 
     <div class="card-footer">
       <div class="collapse" id="game_picks_new_form">
-        <!-- New associationcollection form start -->
         <%= render partial: "games/game_picks_new_form" %>
-        <!-- New associationcollection form end -->
       </div>
     </div>
 

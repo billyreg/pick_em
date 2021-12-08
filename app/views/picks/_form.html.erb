@@ -1,12 +1,7 @@
 <% was_validated = pick.errors.any? %>
 
 <%= form_with(model: pick, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for game_id start -->
   <div class="form-group">
     <% game_class = "form-control" %>
     <% game_was_invalid = pick.errors.include?(:game) %>
@@ -20,9 +15,7 @@
     <% end %>
 
     <%= f.label :game_id %>
-    <!-- Input for game_id start -->
     <%= f.collection_select :game_id, Game.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for game_id end -->
     <% if game_was_invalid %>
       <% pick.errors.full_messages_for(:game).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -31,8 +24,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for game_id end -->
-  <!-- Label and input for team start -->
   <div class="form-group">
     <% team_class = "form-control" %>
     <% team_was_invalid = pick.errors.include?(:team) %>
@@ -46,9 +37,7 @@
     <% end %>
 
     <%= f.label :team %>
-    <!-- Input for team start -->
     <%= f.text_field :team, class: team_class, placeholder: "Enter team" %>
-    <!-- Input for team end -->
     <% if team_was_invalid %>
       <% pick.errors.full_messages_for(:team).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -57,8 +46,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for team end -->
-  <!-- Label and input for weight start -->
   <div class="form-group">
     <% weight_class = "form-control" %>
     <% weight_was_invalid = pick.errors.include?(:weight) %>
@@ -72,9 +59,7 @@
     <% end %>
 
     <%= f.label :weight %>
-    <!-- Input for weight start -->
     <%= f.number_field :weight, class: weight_class, placeholder: "Enter weight" %>
-    <!-- Input for weight end -->
     <% if weight_was_invalid %>
       <% pick.errors.full_messages_for(:weight).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -83,6 +68,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for weight end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>
