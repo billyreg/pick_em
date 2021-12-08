@@ -3,7 +3,8 @@ class GamesController < ApplicationController
 
   def index
     @q = Game.ransack(params[:q])
-    @games = @q.result(distinct: true).includes(:picks).page(params[:page]).per(10)
+    @games = @q.result(distinct: true).includes(:picks, :week, :favorite,
+                                                :underdog).page(params[:page]).per(10)
   end
 
   def show
@@ -20,7 +21,12 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
-      redirect_to @game, notice: "Game was successfully created."
+      message = "Game was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
+      else
+        redirect_to @game, notice: message
+      end
     else
       render :new
     end
@@ -36,7 +42,12 @@ class GamesController < ApplicationController
 
   def destroy
     @game.destroy
-    redirect_to games_url, notice: "Game was successfully destroyed."
+    message = "Game was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
+    else
+      redirect_to games_url, notice: message
+    end
   end
 
   private
@@ -46,6 +57,7 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:favorite, :underdog, :description)
+    params.require(:game).permit(:favorite_id, :underdog_id, :description,
+                                 :week_id)
   end
 end

@@ -36,8 +36,8 @@
       <% end %>
     <% end %>
 
-    <%= f.label :team %>
-    <%= f.text_field :team, class: team_class, placeholder: "Enter team" %>
+    <%= f.label :team_id %>
+    <%= f.collection_select :team_id, Team.all, :id, :to_s, {}, class: "form-control" %>
     <% if team_was_invalid %>
       <% pick.errors.full_messages_for(:team).each do |message| %>
         <div class="invalid-feedback d-flex">

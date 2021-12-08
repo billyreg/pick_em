@@ -1,6 +1,16 @@
 class Game < ApplicationRecord
   # Direct associations
 
+  belongs_to :underdog,
+             class_name: "Team",
+             counter_cache: :underdog_games_count
+
+  belongs_to :favorite,
+             class_name: "Team",
+             counter_cache: :favorite_games_count
+
+  belongs_to :week
+
   has_many   :picks,
              dependent: :destroy
 
@@ -11,6 +21,6 @@ class Game < ApplicationRecord
   # Scopes
 
   def to_s
-    favorite
+    description
   end
 end

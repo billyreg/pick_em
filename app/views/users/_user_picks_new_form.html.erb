@@ -9,9 +9,9 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :team %>
+    <%= f.label :team_id %>
 
-    <%= f.text_field :team, class: "form-control" %>
+    <%= f.collection_select :team_id, Team.all, :id, :to_s, {}, class: "form-control" %>
   </div>
 
   <div class="form-group">

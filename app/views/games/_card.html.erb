@@ -6,13 +6,28 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Favorite</dt>
-      <dd><%= game.favorite %></dd>
+      <dd>
+        <% if @game.favorite.present? %>
+          <%= link_to game.favorite, game.favorite %>
+        <% end %>
+      </dd>
 
       <dt>Underdog</dt>
-      <dd><%= game.underdog %></dd>
+      <dd>
+        <% if @game.underdog.present? %>
+          <%= link_to game.underdog, game.underdog %>
+        <% end %>
+      </dd>
 
       <dt>Description</dt>
       <dd><%= game.description %></dd>
+
+      <dt>Week</dt>
+      <dd>
+        <% if @game.week.present? %>
+          <%= link_to game.week, game.week %>
+        <% end %>
+      </dd>
 
     </dl>
 

@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Games
+
+    <a data-toggle="collapse" href="#week_games_new_form">
+      Add game
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @week.games.each do |game| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <%= link_to game, game %>
+
+        <%= link_to game, method: :delete, data: { confirm: "Do you really want to delete this game" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="week_games_new_form">
+        <%= render partial: "weeks/week_games_new_form" %>
+      </div>
+    </div>
+
+  </ul>
+</div>

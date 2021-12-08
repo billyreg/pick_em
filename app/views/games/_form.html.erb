@@ -13,8 +13,8 @@
       <% end %>
     <% end %>
 
-    <%= f.label :favorite %>
-    <%= f.text_field :favorite, class: favorite_class, placeholder: "Enter favorite" %>
+    <%= f.label :favorite_id %>
+    <%= f.collection_select :favorite_id, Team.all, :id, :to_s, {}, class: "form-control" %>
     <% if favorite_was_invalid %>
       <% game.errors.full_messages_for(:favorite).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -35,8 +35,8 @@
       <% end %>
     <% end %>
 
-    <%= f.label :underdog %>
-    <%= f.text_field :underdog, class: underdog_class, placeholder: "Enter underdog" %>
+    <%= f.label :underdog_id %>
+    <%= f.collection_select :underdog_id, Team.all, :id, :to_s, {}, class: "form-control" %>
     <% if underdog_was_invalid %>
       <% game.errors.full_messages_for(:underdog).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -61,6 +61,28 @@
     <%= f.text_field :description, class: description_class, placeholder: "Enter description" %>
     <% if description_was_invalid %>
       <% game.errors.full_messages_for(:description).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% week_class = "form-control" %>
+    <% week_was_invalid = game.errors.include?(:week) %>
+
+    <% if was_validated %>
+      <% if week_was_invalid %>
+        <% week_class << " is-invalid" %>
+      <% else %>
+        <% week_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :week_id %>
+    <%= f.collection_select :week_id, Week.all, :id, :to_s, {}, class: "form-control" %>
+    <% if week_was_invalid %>
+      <% game.errors.full_messages_for(:week).each do |message| %>
         <div class="invalid-feedback d-flex">
           <%= message %>
         </div>

@@ -1,6 +1,9 @@
 class Pick < ApplicationRecord
   # Direct associations
 
+  belongs_to :team,
+             counter_cache: true
+
   belongs_to :game
 
   belongs_to :user
