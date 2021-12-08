@@ -8,6 +8,7 @@ class GamesController < ApplicationController
 
   # GET /games/1
   def show
+    @pick = Pick.new
   end
 
   # GET /games/new

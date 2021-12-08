@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @pick = Pick.new
   end
 
   # GET /users/new

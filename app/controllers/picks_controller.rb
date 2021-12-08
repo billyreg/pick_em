@@ -24,7 +24,12 @@ class PicksController < ApplicationController
     @pick = Pick.new(pick_params)
 
     if @pick.save
-      redirect_to @pick, notice: 'Pick was successfully created.'
+      message = 'Pick was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @pick, notice: message
+      end
     else
       render :new
     end

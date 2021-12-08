@@ -1,0 +1,42 @@
+<!-- Form pick start -->
+<%= form_with(model: @pick, local: true) do |f| %>
+<!-- Form pick end -->
+
+  <!-- Label and input for user_id start -->
+  <!-- Input for user_id start -->
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <!-- Input for user_id end -->
+  <!-- Label and input for user_id end -->
+
+  <!-- Label and input for game_id start -->
+  <div class="form-group">
+    <%= f.label :game_id %>
+
+    <!-- Input for game_id start -->
+    <%= f.text_field :game_id, class: "form-control" %>
+    <!-- Input for game_id end -->
+  </div>
+  <!-- Label and input for game_id end -->
+
+  <!-- Label and input for team start -->
+  <div class="form-group">
+    <%= f.label :team %>
+
+    <!-- Input for team start -->
+    <%= f.text_field :team, class: "form-control" %>
+    <!-- Input for team end -->
+  </div>
+  <!-- Label and input for team end -->
+
+  <!-- Label and input for weight start -->
+  <div class="form-group">
+    <%= f.label :weight %>
+
+    <!-- Input for weight start -->
+    <%= f.text_field :weight, class: "form-control" %>
+    <!-- Input for weight end -->
+  </div>
+  <!-- Label and input for weight end -->
+
+  <%= f.submit "Create pick", class: "btn btn-block btn-outline-secondary" %>
+<% end %>
