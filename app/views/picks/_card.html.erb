@@ -34,16 +34,20 @@
 
       <!-- Edit link pick start -->
       <div class="col">
-        <%= link_to edit_pick_url(pick), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @pick.user %>
+          <%= link_to edit_pick_url(pick), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link pick end -->
 
       <!-- Delete link pick start -->
       <div class="col">
-        <%= link_to pick, method: :delete, data: { confirm: "Do you really want to delete this pick?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @pick.user %>
+          <%= link_to pick, method: :delete, data: { confirm: "Do you really want to delete this pick?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link pick end -->
