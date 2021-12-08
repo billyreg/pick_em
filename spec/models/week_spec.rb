@@ -8,6 +8,7 @@ RSpec.describe Week, type: :model do
   end
 
   describe "InDirect Associations" do
+    it { should have_many(:picks) }
   end
 
   describe "Validations" do

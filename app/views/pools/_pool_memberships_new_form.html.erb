@@ -4,5 +4,11 @@
 
   <%= f.hidden_field :pool_id, value: @pool.id %>
 
+  <div class="form-group">
+    <%= f.label :member_type %>
+
+    <%= f.select :member_type, options_for_select(Membership.member_types.keys), {}, class: "form-control" %>
+  </div>
+
   <%= f.submit "Create membership", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

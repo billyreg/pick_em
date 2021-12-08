@@ -10,6 +10,7 @@ RSpec.describe Pick, type: :model do
   end
 
   describe "InDirect Associations" do
+    it { should have_one(:week) }
   end
 
   describe "Validations" do

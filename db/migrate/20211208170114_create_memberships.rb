@@ -3,6 +3,7 @@ class CreateMemberships < ActiveRecord::Migration[6.0]
     create_table :memberships do |t|
       t.integer :user_id
       t.integer :pool_id
+      t.integer :member_type
 
       t.timestamps
     end

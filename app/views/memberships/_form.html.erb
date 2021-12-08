@@ -24,5 +24,27 @@
       <% end %>
     <% end %>
   </div>
+  <div class="form-group">
+    <% member_type_class = "form-control" %>
+    <% member_type_was_invalid = membership.errors.include?(:member_type) %>
+
+    <% if was_validated %>
+      <% if member_type_was_invalid %>
+        <% member_type_class << " is-invalid" %>
+      <% else %>
+        <% member_type_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :member_type %>
+    <%= f.select :member_type, options_for_select(Membership.member_types.keys), {}, class: "form-control" %>
+    <% if member_type_was_invalid %>
+      <% membership.errors.full_messages_for(:member_type).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

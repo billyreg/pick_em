@@ -10,6 +10,10 @@ class Pick < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :week,
+             through: :game,
+             source: :week
+
   # Validations
 
   # Scopes

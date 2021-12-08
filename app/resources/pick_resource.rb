@@ -16,4 +16,12 @@ class PickResource < ApplicationResource
   belongs_to :user
 
   # Indirect associations
+
+  has_one    :week
+
+  filter :week_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:week).where(games: { week_id: value })
+    end
+  end
 end
