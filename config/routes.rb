@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "picks#index"
   resources :games
   resources :picks
   devise_for :users
