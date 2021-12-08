@@ -8,6 +8,8 @@ class GameResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :picks
+
   # Indirect associations
 
 end

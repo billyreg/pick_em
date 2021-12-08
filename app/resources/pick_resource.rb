@@ -9,6 +9,8 @@ class PickResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :game
+
   belongs_to :user
 
   # Indirect associations
