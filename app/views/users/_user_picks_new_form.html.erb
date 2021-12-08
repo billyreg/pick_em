@@ -13,7 +13,7 @@
     <%= f.label :game_id %>
 
     <!-- Input for game_id start -->
-    <%= f.text_field :game_id, class: "form-control" %>
+    <%= f.collection_select :game_id, Game.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for game_id end -->
   </div>
   <!-- Label and input for game_id end -->
