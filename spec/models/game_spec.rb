@@ -4,6 +4,8 @@ RSpec.describe Game, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:picks) }
+
     end
 
     describe "InDirect Associations" do

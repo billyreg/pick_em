@@ -4,6 +4,8 @@ RSpec.describe Pick, type: :model do
   
     describe "Direct Associations" do
 
+    it { should belong_to(:game) }
+
     it { should belong_to(:user) }
 
     end
