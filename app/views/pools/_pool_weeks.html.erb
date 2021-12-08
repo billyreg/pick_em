@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Weeks
+
+    <a data-toggle="collapse" href="#pool_weeks_new_form">
+      Add week
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @pool.weeks.each do |week| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <%= link_to week, week %>
+
+        <%= link_to week, method: :delete, data: { confirm: "Do you really want to delete this week" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="pool_weeks_new_form">
+        <%= render partial: "pools/pool_weeks_new_form" %>
+      </div>
+    </div>
+
+  </ul>
+</div>

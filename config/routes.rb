@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   scope path: ApplicationResource.endpoint_namespace,
         defaults: { format: :jsonapi } do
     scope module: "api/v1", as: "api" do
+      resources :memberships
+
+      resources :pools
+
       resources :teams
 
       resources :weeks
@@ -18,6 +22,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root to: "picks#index"
+  resources :memberships
+  resources :pools
   resources :teams
   resources :weeks
   resources :games

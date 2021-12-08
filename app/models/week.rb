@@ -1,6 +1,8 @@
 class Week < ApplicationRecord
   # Direct associations
 
+  belongs_to :pool
+
   has_many   :games,
              dependent: :destroy
 
@@ -11,6 +13,6 @@ class Week < ApplicationRecord
   # Scopes
 
   def to_s
-    created_at
+    pool.to_s
   end
 end

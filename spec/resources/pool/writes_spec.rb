@@ -1,64 +1,64 @@
 require "rails_helper"
 
-RSpec.describe UserResource, type: :resource do
+RSpec.describe PoolResource, type: :resource do
   describe "creating" do
     let(:payload) do
       {
         data: {
-          type: "users",
+          type: "pools",
           attributes: {},
         },
       }
     end
 
     let(:instance) do
-      UserResource.build(payload)
+      PoolResource.build(payload)
     end
 
     it "works" do
       expect do
         expect(instance.save).to eq(true),
                                  instance.errors.full_messages.to_sentence
-      end.to change { User.count }.by(1)
+      end.to change { Pool.count }.by(1)
     end
   end
 
   describe "updating" do
-    let!(:user) { create(:user) }
+    let!(:pool) { create(:pool) }
 
     let(:payload) do
       {
         data: {
-          id: user.id.to_s,
-          type: "users",
+          id: pool.id.to_s,
+          type: "pools",
           attributes: {}, # Todo!
         },
       }
     end
 
     let(:instance) do
-      UserResource.find(payload)
+      PoolResource.find(payload)
     end
 
     xit "works (add some attributes and enable this spec)" do
       expect do
         expect(instance.update_attributes).to eq(true)
-      end.to change { user.reload.updated_at }
-      # .and change { user.foo }.to('bar') <- example
+      end.to change { pool.reload.updated_at }
+      # .and change { pool.foo }.to('bar') <- example
     end
   end
 
   describe "destroying" do
-    let!(:user) { create(:user) }
+    let!(:pool) { create(:pool) }
 
     let(:instance) do
-      UserResource.find(id: user.id)
+      PoolResource.find(id: pool.id)
     end
 
     it "works" do
       expect do
         expect(instance.destroy).to eq(true)
-      end.to change { User.count }.by(-1)
+      end.to change { Pool.count }.by(-1)
     end
   end
 end

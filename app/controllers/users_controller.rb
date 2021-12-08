@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @membership = Membership.new
     @pick = Pick.new
   end
 
@@ -45,6 +46,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:user_name)
+    params.require(:user).permit(:user_name, :user_type)
   end
 end
