@@ -1,0 +1,6 @@
+<%= form_with(model: @week, local: true) do |f| %>
+
+  <%= f.hidden_field :pool_id, value: @pool.id %>
+
+  <%= f.submit "Create week", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

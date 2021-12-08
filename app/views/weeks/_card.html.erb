@@ -5,6 +5,13 @@
 
   <div class="card-body">
     <dl class="mb-1">
+      <dt>Pool</dt>
+      <dd>
+        <% if @week.pool.present? %>
+          <%= link_to week.pool, week.pool %>
+        <% end %>
+      </dd>
+
     </dl>
 
     <div class="row">

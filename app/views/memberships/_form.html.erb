@@ -1,0 +1,28 @@
+<% was_validated = membership.errors.any? %>
+
+<%= form_with(model: membership, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="form-group">
+    <% pool_class = "form-control" %>
+    <% pool_was_invalid = membership.errors.include?(:pool) %>
+
+    <% if was_validated %>
+      <% if pool_was_invalid %>
+        <% pool_class << " is-invalid" %>
+      <% else %>
+        <% pool_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :pool_id %>
+    <%= f.collection_select :pool_id, Pool.all, :id, :to_s, {}, class: "form-control" %>
+    <% if pool_was_invalid %>
+      <% membership.errors.full_messages_for(:pool).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

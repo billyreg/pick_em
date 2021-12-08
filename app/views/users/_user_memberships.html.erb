@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Memberships
+
+    <a data-toggle="collapse" href="#user_memberships_new_form">
+      Add membership
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @user.memberships.each do |membership| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <%= link_to membership, membership %>
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="user_memberships_new_form">
+        <%= render partial: "users/user_memberships_new_form" %>
+      </div>
+    </div>
+
+  </ul>
+</div>

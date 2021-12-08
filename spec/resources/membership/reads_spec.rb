@@ -1,37 +1,37 @@
 require "rails_helper"
 
-RSpec.describe UserResource, type: :resource do
+RSpec.describe MembershipResource, type: :resource do
   describe "serialization" do
-    let!(:user) { create(:user) }
+    let!(:membership) { create(:membership) }
 
     it "works" do
       render
       data = jsonapi_data[0]
-      expect(data.id).to eq(user.id)
-      expect(data.jsonapi_type).to eq("users")
+      expect(data.id).to eq(membership.id)
+      expect(data.jsonapi_type).to eq("memberships")
     end
   end
 
   describe "filtering" do
-    let!(:user1) { create(:user) }
-    let!(:user2) { create(:user) }
+    let!(:membership1) { create(:membership) }
+    let!(:membership2) { create(:membership) }
 
     context "by id" do
       before do
-        params[:filter] = { id: { eq: user2.id } }
+        params[:filter] = { id: { eq: membership2.id } }
       end
 
       it "works" do
         render
-        expect(d.map(&:id)).to eq([user2.id])
+        expect(d.map(&:id)).to eq([membership2.id])
       end
     end
   end
 
   describe "sorting" do
     describe "by id" do
-      let!(:user1) { create(:user) }
-      let!(:user2) { create(:user) }
+      let!(:membership1) { create(:membership) }
+      let!(:membership2) { create(:membership) }
 
       context "when ascending" do
         before do
@@ -41,8 +41,8 @@ RSpec.describe UserResource, type: :resource do
         it "works" do
           render
           expect(d.map(&:id)).to eq([
-                                      user1.id,
-                                      user2.id,
+                                      membership1.id,
+                                      membership2.id,
                                     ])
         end
       end
@@ -55,8 +55,8 @@ RSpec.describe UserResource, type: :resource do
         it "works" do
           render
           expect(d.map(&:id)).to eq([
-                                      user2.id,
-                                      user1.id,
+                                      membership2.id,
+                                      membership1.id,
                                     ])
         end
       end

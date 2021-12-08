@@ -3,7 +3,8 @@ class WeeksController < ApplicationController
 
   def index
     @q = Week.ransack(params[:q])
-    @weeks = @q.result(distinct: true).includes(:games).page(params[:page]).per(10)
+    @weeks = @q.result(distinct: true).includes(:games,
+                                                :pool).page(params[:page]).per(10)
   end
 
   def show
@@ -20,7 +21,12 @@ class WeeksController < ApplicationController
     @week = Week.new(week_params)
 
     if @week.save
-      redirect_to @week, notice: "Week was successfully created."
+      message = "Week was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
+      else
+        redirect_to @week, notice: message
+      end
     else
       render :new
     end
@@ -36,7 +42,12 @@ class WeeksController < ApplicationController
 
   def destroy
     @week.destroy
-    redirect_to weeks_url, notice: "Week was successfully destroyed."
+    message = "Week was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
+    else
+      redirect_to weeks_url, notice: message
+    end
   end
 
   private
@@ -46,6 +57,6 @@ class WeeksController < ApplicationController
   end
 
   def week_params
-    params.fetch(:week, {})
+    params.require(:week).permit(:pool_id)
   end
 end

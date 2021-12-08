@@ -1,20 +1,20 @@
 require "rails_helper"
 
-RSpec.describe "users#destroy", type: :request do
+RSpec.describe "memberships#destroy", type: :request do
   subject(:make_request) do
-    jsonapi_delete "/api/v1/users/#{user.id}"
+    jsonapi_delete "/api/v1/memberships/#{membership.id}"
   end
 
   describe "basic destroy" do
-    let!(:user) { create(:user) }
+    let!(:membership) { create(:membership) }
 
     it "updates the resource" do
-      expect(UserResource).to receive(:find).and_call_original
+      expect(MembershipResource).to receive(:find).and_call_original
       expect do
         make_request
         expect(response.status).to eq(200), response.body
-      end.to change { User.count }.by(-1)
-      expect { user.reload }.
+      end.to change { Membership.count }.by(-1)
+      expect { membership.reload }.
         to raise_error(ActiveRecord::RecordNotFound)
       expect(json).to eq("meta" => {})
     end

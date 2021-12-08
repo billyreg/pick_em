@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "users#create", type: :request do
+RSpec.describe "memberships#create", type: :request do
   subject(:make_request) do
-    jsonapi_post "/api/v1/users", payload
+    jsonapi_post "/api/v1/memberships", payload
   end
 
   describe "basic create" do
@@ -14,18 +14,18 @@ RSpec.describe "users#create", type: :request do
     let(:payload) do
       {
         data: {
-          type: "users",
+          type: "memberships",
           attributes: params,
         },
       }
     end
 
     it "works" do
-      expect(UserResource).to receive(:build).and_call_original
+      expect(MembershipResource).to receive(:build).and_call_original
       expect do
         make_request
         expect(response.status).to eq(201), response.body
-      end.to change { User.count }.by(1)
+      end.to change { Membership.count }.by(1)
     end
   end
 end
