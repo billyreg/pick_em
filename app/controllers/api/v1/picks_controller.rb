@@ -13,7 +13,7 @@ class Api::V1::PicksController < Api::V1::GraphitiController
     pick = PickResource.build(params)
 
     if pick.save
-      render jsonapi: pick, status: 201
+      render jsonapi: pick, status: :created
     else
       render jsonapi_errors: pick
     end
@@ -33,7 +33,7 @@ class Api::V1::PicksController < Api::V1::GraphitiController
     pick = PickResource.find(params)
 
     if pick.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: pick
     end

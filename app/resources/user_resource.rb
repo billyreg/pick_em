@@ -8,8 +8,7 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :picks
+  has_many :picks
 
   # Indirect associations
-
 end

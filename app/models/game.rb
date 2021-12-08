@@ -2,7 +2,7 @@ class Game < ApplicationRecord
   # Direct associations
 
   has_many   :picks,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
@@ -13,5 +13,4 @@ class Game < ApplicationRecord
   def to_s
     favorite
   end
-
 end

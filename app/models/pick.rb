@@ -14,5 +14,4 @@ class Pick < ApplicationRecord
   def to_s
     user.to_s
   end
-
 end
