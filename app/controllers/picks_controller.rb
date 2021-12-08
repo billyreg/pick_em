@@ -4,25 +4,20 @@ class PicksController < ApplicationController
 
   before_action :set_pick, only: %i[show edit update destroy]
 
-  # GET /picks
   def index
     @q = current_user.picks.ransack(params[:q])
     @picks = @q.result(distinct: true).includes(:user,
                                                 :game).page(params[:page]).per(10)
   end
 
-  # GET /picks/1
   def show; end
 
-  # GET /picks/new
   def new
     @pick = Pick.new
   end
 
-  # GET /picks/1/edit
   def edit; end
 
-  # POST /picks
   def create
     @pick = Pick.new(pick_params)
 
@@ -38,7 +33,6 @@ class PicksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /picks/1
   def update
     if @pick.update(pick_params)
       redirect_to @pick, notice: "Pick was successfully updated."
@@ -47,7 +41,6 @@ class PicksController < ApplicationController
     end
   end
 
-  # DELETE /picks/1
   def destroy
     @pick.destroy
     message = "Pick was successfully deleted."
@@ -68,12 +61,10 @@ class PicksController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_pick
     @pick = Pick.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def pick_params
     params.require(:pick).permit(:user_id, :game_id, :team, :weight)
   end
