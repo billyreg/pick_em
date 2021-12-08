@@ -1,0 +1,109 @@
+<% was_validated = pick.errors.any? %>
+
+<%= form_with(model: pick, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for user_id start -->
+  <div class="form-group">
+    <% user_class = "form-control" %>
+    <% user_was_invalid = pick.errors.include?(:user) %>
+
+    <% if was_validated %>
+      <% if user_was_invalid %>
+        <% user_class << " is-invalid" %>
+      <% else %>
+        <% user_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :user_id %>
+    <!-- Input for user_id start -->
+    <%= f.number_field :user_id, class: user_class, placeholder: "Enter user" %>
+    <!-- Input for user_id end -->
+    <% if user_was_invalid %>
+      <% pick.errors.full_messages_for(:user).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for user_id end -->
+  <!-- Label and input for game_id start -->
+  <div class="form-group">
+    <% game_class = "form-control" %>
+    <% game_was_invalid = pick.errors.include?(:game) %>
+
+    <% if was_validated %>
+      <% if game_was_invalid %>
+        <% game_class << " is-invalid" %>
+      <% else %>
+        <% game_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :game_id %>
+    <!-- Input for game_id start -->
+    <%= f.number_field :game_id, class: game_class, placeholder: "Enter game" %>
+    <!-- Input for game_id end -->
+    <% if game_was_invalid %>
+      <% pick.errors.full_messages_for(:game).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for game_id end -->
+  <!-- Label and input for team start -->
+  <div class="form-group">
+    <% team_class = "form-control" %>
+    <% team_was_invalid = pick.errors.include?(:team) %>
+
+    <% if was_validated %>
+      <% if team_was_invalid %>
+        <% team_class << " is-invalid" %>
+      <% else %>
+        <% team_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :team %>
+    <!-- Input for team start -->
+    <%= f.text_field :team, class: team_class, placeholder: "Enter team" %>
+    <!-- Input for team end -->
+    <% if team_was_invalid %>
+      <% pick.errors.full_messages_for(:team).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for team end -->
+  <!-- Label and input for weight start -->
+  <div class="form-group">
+    <% weight_class = "form-control" %>
+    <% weight_was_invalid = pick.errors.include?(:weight) %>
+
+    <% if was_validated %>
+      <% if weight_was_invalid %>
+        <% weight_class << " is-invalid" %>
+      <% else %>
+        <% weight_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :weight %>
+    <!-- Input for weight start -->
+    <%= f.number_field :weight, class: weight_class, placeholder: "Enter weight" %>
+    <!-- Input for weight end -->
+    <% if weight_was_invalid %>
+      <% pick.errors.full_messages_for(:weight).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for weight end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
