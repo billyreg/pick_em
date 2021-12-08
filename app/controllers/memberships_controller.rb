@@ -66,6 +66,6 @@ class MembershipsController < ApplicationController
   end
 
   def membership_params
-    params.require(:membership).permit(:user_id, :pool_id)
+    params.require(:membership).permit(:user_id, :pool_id, :member_type)
   end
 end

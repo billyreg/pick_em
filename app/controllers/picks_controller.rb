@@ -6,8 +6,8 @@ class PicksController < ApplicationController
 
   def index
     @q = current_user.picks.ransack(params[:q])
-    @picks = @q.result(distinct: true).includes(:user, :game,
-                                                :team).page(params[:page]).per(10)
+    @picks = @q.result(distinct: true).includes(:user, :game, :team,
+                                                :week).page(params[:page]).per(10)
   end
 
   def show; end

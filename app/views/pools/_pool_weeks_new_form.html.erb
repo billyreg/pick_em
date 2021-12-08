@@ -2,5 +2,11 @@
 
   <%= f.hidden_field :pool_id, value: @pool.id %>
 
+  <div class="form-group">
+    <%= f.label :name %>
+
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
   <%= f.submit "Create week", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

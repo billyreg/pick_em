@@ -8,11 +8,15 @@ class Week < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :picks,
+             through: :games,
+             source: :picks
+
   # Validations
 
   # Scopes
 
   def to_s
-    pool.to_s
+    name
   end
 end

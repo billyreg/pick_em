@@ -1,5 +1,5 @@
 ActiveAdmin.register Membership do
-  permit_params :user_id, :pool_id
+  permit_params :user_id, :pool_id, :member_type
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

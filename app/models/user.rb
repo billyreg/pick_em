@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  enum user_type: { "commissioner" => 0, "member" => 1 }
-
   include JwtToken
   # Direct associations
 

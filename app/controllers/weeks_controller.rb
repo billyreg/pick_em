@@ -3,8 +3,8 @@ class WeeksController < ApplicationController
 
   def index
     @q = Week.ransack(params[:q])
-    @weeks = @q.result(distinct: true).includes(:games,
-                                                :pool).page(params[:page]).per(10)
+    @weeks = @q.result(distinct: true).includes(:games, :pool,
+                                                :picks).page(params[:page]).per(10)
   end
 
   def show
@@ -57,6 +57,6 @@ class WeeksController < ApplicationController
   end
 
   def week_params
-    params.require(:week).permit(:pool_id)
+    params.require(:week).permit(:pool_id, :name)
   end
 end

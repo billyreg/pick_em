@@ -1,4 +1,6 @@
 class Membership < ApplicationRecord
+  enum member_type: { "commissioner" => 0, "member" => 1 }
+
   # Direct associations
 
   belongs_to :pool,
